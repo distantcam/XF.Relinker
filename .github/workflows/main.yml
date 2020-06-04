@@ -21,7 +21,7 @@ jobs:
 
     - uses: eskatos/gradle-command-action@v1
       with:
-        args: fetch
+        arguments: fetch
 
     - name: msbuild
       run: msbuild Relinker.sln
