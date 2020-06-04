@@ -12,12 +12,14 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-
     - uses: microsoft/setup-msbuild@v1
 
-    - name: gradle fetch
+    - name: Fetch Relinker lib
       run: gradle fetch
       working-directory: ./Xamarin.Android.Relinker
 
-    - name: msbuild
-      run: msbuild Relinker.sln
+    - name: Build and Generate NuGet package
+      run: msbuild -t:pack -p:DesignTimeBuild="false" -p:PackageOutputPath="artifacts" Relinker.sln
+
+    - name: Push generated package to GitHub registry
+      run: dotnet nuget push ./artifacts/*.nupkg --skip-duplicate --no-symbols true
