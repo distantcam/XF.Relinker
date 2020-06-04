@@ -18,6 +18,9 @@ jobs:
       run: gradle fetch
       working-directory: ./Xamarin.Android.Relinker
 
+    - name: Restore packages
+      run: msbuild -t:restore Relinker.sln
+
     - name: Build and Generate NuGet package
       run: msbuild -t:pack -p:DesignTimeBuild="false" -p:PackageOutputPath="artifacts" Relinker.sln
 
