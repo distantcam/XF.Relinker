@@ -25,4 +25,4 @@ jobs:
       run: msbuild -t:pack -p:DesignTimeBuild="false" -p:PackageOutputPath="artifacts" Relinker.sln
 
     - name: Push generated package to GitHub registry
-      run: dotnet nuget push ./artifacts/*.nupkg --skip-duplicate --no-symbols true
+      run: dotnet nuget push ./artifacts/*.nupkg --skip-duplicate -s https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json -k ${{ secrets.GITHUB_TOKEN }}
