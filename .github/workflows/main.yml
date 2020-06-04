@@ -17,6 +17,7 @@ jobs:
 
     - name: gradle fetch
       run: gradle fetch
+      working-directory: ./Xamarin.Android.Relinker
 
     - name: msbuild
       run: msbuild Relinker.sln
