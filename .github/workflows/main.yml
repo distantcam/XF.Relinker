@@ -1,0 +1,23 @@
+name: CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - uses: microsoft/setup-msbuild@v1
+
+    - uses: OrangeLabs-moe/gradle-actions@v5.0-openjdk-14
+      with:
+        args: fetch
+
+    - name: msbuild
+      run: msbuild Relinker.sln
