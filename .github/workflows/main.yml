@@ -30,4 +30,4 @@ jobs:
       run: msbuild -t:pack -p:Configuration="Release" -p:DesignTimeBuild="false" -p:PackageOutputPath="artifacts" Relinker.sln
 
     - name: Push generated package to GitHub registry
-      run: dotnet nuget push ./Xamarin.Android.Relinker/artifacts/*.nupkg --skip-duplicate --no-symbols
+      run: dotnet nuget push ./Xamarin.Android.Relinker/artifacts/*.nupkg --skip-duplicate --no-symbols 1
